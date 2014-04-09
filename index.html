@@ -9,27 +9,53 @@ and open the template in the editor.
         <title>Example</title>
         
         <!-- Import all libraries -->
-        <script type="text/javascript" src="js/libs/jquery-1.10.2.min.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.js" type="text/javascript"></script>
         <script type="text/javascript" src="js/libs/SupportVhVw.js"></script>
 
     </head>
     <body>
-        
-			<div id="textOne">Example text one (vh5)</div>
-			<div id="textTwo">Example text two (vw3)</div>
-			<div id="textThree" class="textMain">Example text three (vh4)</div>
-			<div id="textFour" class="textMain">Example text four (vh4)</div>
+        <style>
+        	div {
+        		display: block;
+        	}
+        	#widthOne {
+        		background:red;
+        	}
+        	#widthTwo {
+        		background:blue;
+        	}
+        	.textOne {
+        		color:blue;
+        	}
+        	#heightOne {
+        		background:yellow;
+        		width:10%;
+        	}
+        </style>
+    	<div id="widthOne">Example width 50vw width &amp; padding top, bottom 10vh</div>
+		<div id="widthTwo">Example max-width 20vw</div>
+		<div class="textOne" class="textMain"><p>Example text (vh4)</p></div>
+		<div id="heightOne" class="textMain">Example height 20vh</div>
 
 		<script type="text/javascript">
+	
+			$(window).load(function(){
+				// Init object
+				var VhVwFixer = new VhVwFix();
 			
-			// Init object
-			var supportVhVw = new SupportVhVw();
-
-			// Scale all texts
-			supportVhVw.setVh("#textOne", 5);
-			supportVhVw.setVw("#textTwo", 3);
-			supportVhVw.setVh(".textMain", 4);
-			
+				//if you want to do this for browsers that do not have vh & vw support uncomment below
+				//var vw = $(".test").css("width", "15vw");
+				//if (vw.width() == 0) {
+					// Scale slide
+					VhVwFixer.setVh("#widthOne", 10, "padding-bottom");					
+					VhVwFixer.setVh("#widthOne", 10, "padding-top");					
+					VhVwFixer.setVw("#widthOne", 50, "width");
+					VhVwFixer.setVw("#widthTwo", 20, "max-width");
+					VhVwFixer.setVh(".textOne p", 4, "font-size");
+					VhVwFixer.setVh("#heightOne", 20, "height");
+		
+				//} 
+			});
 		</script>
 
             
